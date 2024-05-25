@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | KFC</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">  
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #f0483a, #d10a20);
+            color: #333;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        header img {
+            width: 80px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        header h1 {
+            background-color: #d10a20;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 10px;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-info {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+
+        .contact-info ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        /* Responsifitas untuk layar laptop */
+        @media (min-width: 768px) {
+            header img {
+                width: 100px;
+            }
+
+            .container {
+                max-width: 600px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="{% static 'logo.png' %}" alt="KFC Logo">
+        </div>
+        <h1>About Us</h1>
+    </header>
+
+    <div class="container">
+        <div class="contact-info">
+            <p>Selamat datang di rumah rasa legendaris, tempat di mana cita rasa bertemu dengan kenangan yang tak terlupakan.</p>
+            <p>Sejak hari pertama kami membuka pintu, KFC telah menjadi lebih dari sekadar restoran cepat saji; itu adalah sebuah ikon budaya yang merayakan kelezatan dalam setiap gigitan.</p>
+            <p>Dengan warisan panjang yang dimulai dari sebuah resep rahasia di sebuah dapur kecil di Kentucky, Amerika Serikat, kami telah menggabungkan dedikasi terhadap kualitas dan inovasi dalam setiap hidangan kami. Setiap potong ayam yang renyah, setiap sajian lezat yang kami sajikan adalah sebuah janji untuk memberikan pengalaman yang tak terlupakan kepada setiap pelanggan kami.</p>
+            <p>Di KFC, kami menganggap setiap kunjungan sebagai kesempatan untuk membuat hari Anda lebih cerah, mulai dari aroma rempah-rempah yang menggoda hingga kesan terakhir dari setiap suapan yang memanjakan lidah Anda. Bersama-sama, kita merayakan kelezatan, keberagaman, dan kebersamaan di meja makan kami.</p>
+            <p>Terima kasih telah memilih KFC sebagai destinasi kuliner Anda. Bersama, mari kita lanjutkan perjalanan gastronomi yang luar biasa ini, satu suapan pada satu waktu.</p>
+            <p>Selamat menikmati, dan selamat datang di keluarga KFC!</p>
+        </div>
+    </div>
+</body>
+</html>

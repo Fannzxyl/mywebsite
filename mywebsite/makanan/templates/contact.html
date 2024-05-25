@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}About Us Landing Page{% endblock %}</title>
+    <!-- Load static template tags -->
+    {% load static %}
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #f0483a, #d10a20);
+            color: #333;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        header img {
+            width: 80px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        header h1 {
+            background-color: #d10a20;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 10px;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-info {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+
+        .contact-info p {
+            margin-bottom: 5px;
+        }
+
+        .contact-info a {
+            color: #000;
+            text-decoration: none;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        .contact-info ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .contact-form {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 20px;
+        }
+
+        .contact-form h2 {
+            margin-bottom: 10px;
+        }
+
+        .contact-form .form-group {
+            margin-bottom: 10px;
+        }
+
+        .contact-form label,
+        .contact-form textarea,
+        .contact-form input[type="text"],
+        .contact-form input[type="email"],
+        .contact-form button {
+            display: block;
+            width: 90%;
+            border-radius: 5px;
+            border: none;
+            padding: 10px;
+        }
+
+        .contact-form textarea {
+            height: 100px;
+        }
+
+        .contact-form button {
+            background-color: #fff;
+            color: #333;
+            cursor: pointer;
+        }
+
+        .contact-form button:hover {
+            background-color: #ddd;
+        }
+
+        /* Responsifitas untuk layar laptop */
+        @media (min-width: 768px) {
+            header img {
+                width: 100px;
+            }
+
+            .container {
+                max-width: 600px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <!-- Use the static tag for the logo -->
+        <img src="{% static 'logo.png' %}" alt="KFC Logo">
+        <h1>Contact Us</h1>
+    </header>
+    <div class="container">
+        <div class="contact-info">
+            <p>KFC selalu senang mendengar dari pelanggan kami. Apakah Anda memiliki pertanyaan tentang menu kami, lokasi kami, atau ingin memberikan masukan? Silakan hubungi kami melalui cara berikut:</p>
+            <p>Telepon: <a href="tel:+622227891234">+62 22 2789 1234</a></p>
+            <p>Email: <a href="mailto:info@kfc.co.id">info@kfc.co.id</a></p>
+            <p>Website: <a href="https://www.kfc.co.id/">https://www.kfc.co.id/</a></p>
+            <p>Media Sosial:</p>
+            <ul>
+                <li>Facebook</li>
+                <li>Instagram</li>
+                <li>Twitter</li>
+            </ul>
+        </div>
+        <div class="contact-form">
+            <h2>Kirim Pesan</h2>
+            <form method="post" action="{% url 'contact' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="name">Nama</label>
+                    <input type="text" id="name" name="name" placeholder="Masukkan nama Anda">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Masukkan email Anda">
+                </div>
+                <div class="form-group">
+                    <label for="message">Pesan</label>
+                    <textarea id="message" name="message" placeholder="Masukkan pesan Anda"></textarea>
+                </div>
+                <button type="submit">Kirim</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

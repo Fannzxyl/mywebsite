@@ -1,0 +1,379 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}KFC Landing Page{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Ubuntu', sans-serif;
+        }
+        .main {
+            position: relative;
+            min-height: 100vh;
+            background: radial-gradient(#f0483a, #d10a20);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 30px 100px;
+        }
+        header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+        }
+        .logo {
+            max-width: 90px;
+        }
+        .navigation {
+            display: flex;
+        }
+        .navigation li {
+            list-style: none;
+        }
+        .navigation li a {
+            position: relative;
+            color: #fff;
+            text-decoration: none;
+            margin-left: 40px;
+        }
+        .content {
+            position: relative;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .content .text {
+            width: 100%;
+            max-width: 600px;
+        }
+        .content .text h1 {
+            color: #fff;
+            font-size: 2em;
+            font-weight: 400;
+            line-height: 1.3em;
+            margin-bottom: 20px;
+        }
+        .content .text p {
+            color: #fff;
+            font-size: 1.1em;
+            font-weight: 400;
+            line-height: 1.5em;
+            margin-bottom: 20px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: #fff;
+            color: #333;
+            font-size: 1em;
+            font-weight: 500;
+            border-radius: 40px;
+            text-decoration: none;
+            transition: 0.25s;
+        }
+        .btn:hover {
+            letter-spacing: 1px;
+        }
+        .slider {
+            position: relative;
+        }
+        .slider .slides {
+            display: none;
+        }
+        .slider .slides.active {
+            display: block;
+        }
+        .slider .slides img {
+            width: 100%;
+            max-width: 600px;
+        }
+        .footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            display: flex;
+            padding: 30px 100px;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+        .sci {
+            display: flex;
+        }
+        .sci li {
+            list-style: none;
+        }
+        .sci li a {
+            color: #fff;
+            font-size: 2em;
+            margin-right: 20px;
+            display: inline-block;
+            transition: 0.25s;
+        }
+        .sci li a:hover {
+            transform: translateY(-5px);
+        }
+        .prevNext {
+            position: relative;
+            user-select: none;
+        }
+        .prevNext p {
+            position: relative;
+            color: #fff;
+            text-align: end;
+            margin-bottom: 15px;
+        }
+        .prevNext p::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: -35px;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 2px;
+            background: #fff;
+        }
+        .prevNext span {
+            position: relative;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 50px;
+            height: 50px;
+            border: 2px solid #fff;
+            cursor: pointer;
+            font-size: 2em;
+            color: #fff;
+        }
+        .prevNext span:nth-child(2) {
+            margin-right: 20px;
+        }
+        /* now, make it responsive */
+        @media (max-width: 991px) {
+            .main {
+                padding: 40px;
+            }
+            header {
+                padding: 20px 40px;
+            }
+            .logo {
+                max-width: 70px;
+            }
+            .content {
+                flex-direction: column;
+                margin: 120px 0 40px;
+            }
+            .content .text {
+                max-width: 100%;
+            }
+            .content .text h1 {
+                font-size: 1.5em;
+            }
+            .slider {
+                margin-top: 40px;
+            }
+            .slider .slides img {
+                width: 100%;
+                max-width: 420px;
+            }
+            .footer {
+                position: relative;
+                padding: 0;
+            }
+            .navigation {
+                display: none;
+            }
+            .navigation.active {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: #d10a20;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+            }
+            .navigation li a {
+                font-size: 1.5em;
+                margin: 10px 0;
+                display: inline-block;
+            }
+            .toggle {
+                position: relative;
+                width: 32px;
+                height: 40px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 100000;
+                cursor: pointer;
+            }
+            .toggle.active {
+                position: fixed;
+                right: 40px;
+            }
+            .toggle::before {
+                content: '';
+                position: absolute;
+                width: 100%;
+                height: 2px;
+                background: #fff;
+                transform: translateY(-10px);
+                box-shadow: 0 10px 0 #fff;
+                transition: 0.25s;
+            }
+            .toggle.active::before {
+                transform: translateY(0px) rotate(45deg);
+                box-shadow: 0 0 0 #fff;
+            }
+            .toggle::after {
+                content: '';
+                position: absolute;
+                width: 100%;
+                height: 2px;
+                background: #fff;
+                transform: translateY(10px);
+                transition: 0.25s;
+            }
+            .toggle.active::after {
+                transform: translateY(0px) rotate(-45deg);
+            }
+        }
+        @media (max-width: 480px) {
+            header,
+            .main {
+                padding: 20px;
+            }
+            .toggle.active {
+                right: 20px;
+            }
+            .content .text h1 {
+                font-size: 1.5em;
+            }
+            .btn {
+                padding: 15px 30px;
+            }
+            .footer {
+                flex-direction: column-reverse;
+                align-items: center;
+            }
+            .sci {
+                margin-top: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="main">
+        <header>
+            <a href="#"><img src="{% static 'logo.png' %}" class="logo" alt="KFC Logo"></a>
+            <div class="toggle"></div>
+            <nav class="navigation">
+                <ul>
+                    <li><a href="{% url 'about' %}">About</a></li>
+                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+        <div class="content">
+            <div class="text">
+                <h1>Selamat Datang di KFC<br>KFC: Menggugah Selera, Membangkitkan Kenangan!</h1>
+                <p>Selamat datang di halaman utama KFC! Nikmati pengalaman kuliner yang tak terlupakan dengan menu pilihan kami yang lezat dan nikmati sensasi cita rasa yang menggugah selera. Dari ayam goreng krispi kami yang legendaris hingga sandwich dan burger yang memikat, setiap gigitan adalah petualangan rasa. Temukan lokasi terdekat dan mari nikmati sajian kami hari ini!</p>
+                <a href="#" class="btn">Pesan Sekarang</a>
+            </div>
+            <div class="slider">
+                <div class="slides active">
+                    <img src="{% static 'burger.png' %}" alt="Burger and Fries">
+                </div>
+                <div class="slides">
+                    <img src="{% static 'french_fries.png' %}" alt="French Fries">
+                </div>
+                <div class="slides">
+                    <img src="{% static 'burger.png' %}" alt="Burger">
+                </div>
+                <div class="slides">
+                    <img src="{% static 'fried_chicken.png' %}" alt="Fried Chicken">
+                </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <ul class="sci">
+                <li><a href="#"><ion-icon name="logo-facebook"></ion-icon></a></li>
+                <li><a href="#"><ion-icon name="logo-twitter"></ion-icon></a></li>
+                <li><a href="#"><ion-icon name="logo-instagram"></ion-icon></a></li>
+            </ul>
+            <div class="prevNext">
+                <p>Selalu Segar</p>
+                <span class="prev"><ion-icon name="chevron-back-outline"></ion-icon></span>
+                <span class="next"><ion-icon name="chevron-forward-outline"></ion-icon></span>
+            </div>
+        </div>
+    </section>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+    <script>
+        //toggle 
+        const menutoggle = document.querySelector('.toggle');
+        const navigation = document.querySelector('.navigation');
+        menutoggle.onclick = function(){
+            menutoggle.classList.toggle('active')
+            navigation.classList.toggle('active')
+        }
+
+        //slider
+        const slides = document.querySelectorAll('.slides');
+        const prev = document.querySelector('.prev');
+        const next = document.querySelector('.next');
+
+        let i = 0;
+
+        function ActiveSlide(n){
+            for(slide of slides)
+                slide.classList.remove('active');
+            slides[n].classList.add('active');
+        }
+
+        // function for next btn
+        next.addEventListener('click', function(){
+            if(i == slides.length - 1){
+                i = 0;
+                ActiveSlide(i);
+            }
+            else {
+                i++;
+                ActiveSlide(i);
+            }
+        })
+
+        // function for prev btn
+        prev.addEventListener('click', function(){
+            if(i == 0){
+                i = slides.length - 1;
+                ActiveSlide(i);
+            }
+            else {
+                i--;
+                ActiveSlide(i);
+            }
+        })
+    </script>
+</body>
+</html>
